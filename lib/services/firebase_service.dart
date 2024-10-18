@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+//archivo de ORM de firebase
+
 FirebaseFirestore db = FirebaseFirestore.instance;
 
 //traer todos los usuarios
@@ -29,6 +31,7 @@ Future<void> saveUser(String name, String email, String password) async {
   await db.collection('users').add(user);
 }
 
+//actualiza de usuario
 Future<void> updateUser(String uid, String newName, String newEmail) async {
   await db
       .collection('users')
@@ -36,6 +39,7 @@ Future<void> updateUser(String uid, String newName, String newEmail) async {
       .set({'name': newName, 'email': newEmail});
 }
 
+//elimina usuario
 Future<void> deleteUser(String uid) async{
   await db.collection('users').doc(uid).delete();
 }
